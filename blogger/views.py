@@ -15,3 +15,5 @@ def post_page(request,post_id):
 	return render(request,"post.html",context)
 
 # Create your views here.
+def post_list(request):
+    return render(request, 'blog/post_list.html', {})
