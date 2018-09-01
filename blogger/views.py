@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse
 from blogger.models import BlogPost,Comment
+from django.utils import timezone
 
 def home(request):
 	posts=BlogPost.objects.all()
@@ -15,5 +16,8 @@ def post_page(request,post_id):
 	return render(request,"post.html",context)
 
 # Create your views here.
+
+
 def post_list(request):
-    return render(request, 'blog/post_list.html', {})
+    posts = BlogPost.objects.filter(date_published=timezone.now()).order_by('date_published')
+    return render(request, 'blog/post_list.html', {'posts': posts})    
